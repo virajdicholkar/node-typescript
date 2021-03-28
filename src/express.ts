@@ -29,7 +29,7 @@ export class ExpressConfig {
         // this.app.use('/api/health', healthcheck());
 
         // Point static path to dist
-        this.app.use(express.static(path.resolve('./client/dist/client')));
+        this.app.use(express.static(__dirname + '/client'));
 
         this.app.get('/api', (req, res) => {
             res.json({
@@ -48,7 +48,7 @@ export class ExpressConfig {
     }
 
     serveIndex(req: any, res: any) {
-        const indexPath = path.resolve('./client/dist/client/index.html');
+        const indexPath = __dirname + '/client/index.html';
         console.log('indexPath', indexPath)
         if (indexPath) {
             res.sendFile(indexPath);
