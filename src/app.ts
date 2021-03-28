@@ -1,8 +1,9 @@
 import express from 'express';
 import * as http from 'http';
 import { ExpressConfig } from './express';
+import config from './config';
 const mongoose = require('mongoose');
-const port = 3000;
+const port = config.port;
 
 export class Application {
 
@@ -32,7 +33,7 @@ export class Application {
             }
         }
 
-        const MONGO_URI = 'mongodb://localhost:27017/todo';
+        const MONGO_URI = config.mongoDbUrl;
 
         this.server.on('listening', async () => {
 
