@@ -29,7 +29,7 @@ export class ExpressConfig {
         // this.app.use('/api/health', healthcheck());
 
         // Point static path to dist
-        this.app.use(express.static(path.resolve('./client/dist')));
+        this.app.use(express.static(path.resolve('./client/dist/client')));
 
         this.app.get('/api', (req, res) => {
             res.json({
@@ -48,9 +48,15 @@ export class ExpressConfig {
     }
 
     serveIndex(req: any, res: any) {
-        // res.sendFile(path.resolve('./client/dist/index.html'));
-        res.json({ 'message': 'you will gwt some file' });
-
+        const indexPath = path.resolve('./client/dist/client/index.html');
+        console.log('indexPath', indexPath)
+        if (indexPath) {
+            res.sendFile(indexPath);
+        } else {
+            res.json({
+                message: 'please do npm run client:watch'
+            });
+        }
     }
 
     setupControllers() {
