@@ -11,7 +11,7 @@
     "build-client:prod": "cd client && ng build --prod",
     "copy-client": "copyfiles -f client/dist/client/* ./dist/client/",
     "build:dev": "npm run clean && tsc && npm run build-client:dev && npm run copy-client",
-    "build:prod": "npm run clean && tsc && npm run build-client:prod && npm run copy-client",
+    "build:prod": "npm run clean && tsc && npm run build-client:dev && npm run copy-client",
     "run:prod":"npm run build:prod && node start dist/index.js",
     "pm2:run:prod":"npm run build:prod && pm2 start dist/index.js --name todo"
   },
