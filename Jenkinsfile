@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                npm install && npm run build:prod
             }
         }
         stage('Test') {
