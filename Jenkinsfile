@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:7.4'
+        }
+    }
 
     stages {
         stage('Build') {
@@ -8,7 +12,7 @@ pipeline {
 
                 withNPM(npmrcConfig:'my-custom-npmrc') {
                     echo 'Performing npm build...'
-                    npm install
+                    sh 'npm install'
                 }
             }
         }
