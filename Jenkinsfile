@@ -1,21 +1,16 @@
-pipeline {
-    agent any
+stage('npm-build') {
+    agent {
+        docker {
+            image 'node:7.4'
+        }
+    }
 
-    stages {
-        stage('Build') {
-            steps {
-                npm install
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
+    steps {
+        echo "Branch is master..."
+
+        withNPM(npmrcConfig:'my-custom-npmrc') {
+            echo "Performing npm build..."
+            sh 'npm install'
         }
     }
 }
