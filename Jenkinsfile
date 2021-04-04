@@ -5,11 +5,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Branch is ${env.BRANCH_NAME}..."
-
-                withNPM(npmrcConfig:'my-custom-npmrc') {
-                    echo 'Performing npm build...'
-                    bat 'npm install'
-                }
+                git 'https://github.com/virajdicholkar/node-typescript.git'
+                bat 'npm install'
             }
         }
         stage('Test') {
