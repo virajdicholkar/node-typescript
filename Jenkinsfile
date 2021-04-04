@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo "Branch is ${env.BRANCH_NAME}..."
                 git 'https://github.com/virajdicholkar/node-typescript.git'
-                bat 'npm install'
+                bat 'npm install && npm run build:prod'
             }
         }
         stage('Test') {
